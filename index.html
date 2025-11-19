@@ -22,13 +22,14 @@
             line-height: 1.6;
         }
         
+        /* Шапка - 100% ширины */
         header {
             background: #1e40af;
             color: white;
             padding: 15px;
             display: flex;
             align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 100%;
         }
         
         .logo {
@@ -46,19 +47,22 @@
             font-weight: bold;
         }
         
+        /* Навигация - вертикальный список на мобильных */
         nav {
             background: #1e3a8a;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 100%;
         }
         
         nav ul {
             list-style: none;
             display: flex;
             flex-direction: column;
+            width: 100%;
         }
         
         nav li {
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
         }
         
         nav a {
@@ -66,16 +70,14 @@
             text-decoration: none;
             display: block;
             padding: 12px 15px;
-            transition: 0.3s;
+            width: 100%;
         }
         
-        nav a:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-        
+        /* Контент - 100% ширины */
         .container {
             flex: 1;
             padding: 15px;
+            width: 100%;
         }
         
         section {
@@ -83,7 +85,7 @@
             border-radius: 8px;
             padding: 15px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 100%;
         }
         
         h2 {
@@ -93,7 +95,7 @@
             color: #1e3a8a;
         }
         
-        /* Таблица - улучшенная для мобильных устройств */
+        /* Таблица */
         .table-container {
             overflow-x: auto;
             margin-top: 15px;
@@ -102,7 +104,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 600px; /* Минимальная ширина для таблицы */
+            min-width: 600px;
         }
         
         thead {
@@ -138,30 +140,15 @@
         .links-list a {
             color: #1e40af;
             text-decoration: none;
-            transition: 0.3s;
-        }
-        
-        .links-list a:hover {
-            color: #1e3a8a;
-            text-decoration: underline;
         }
         
         .links-list img {
             border-radius: 8px;
-            transition: 0.3s;
             max-width: 100%;
             height: auto;
             display: block;
             margin: 10px 0;
             border: 2px solid #e2e8f0;
-            background: #f8fafc;
-            min-height: 150px;
-        }
-        
-        .links-list img:hover {
-            transform: scale(1.02);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            border-color: #2563eb;
         }
         
         .image-map-container {
@@ -170,19 +157,6 @@
         
         .image-map-container img {
             max-width: none;
-            background: #f8fafc;
-            min-height: 200px;
-        }
-        
-        /* Стили для отсутствующих изображений */
-        .image-placeholder {
-            background: #f8fafc;
-            border: 2px dashed #cbd5e1;
-            border-radius: 8px;
-            padding: 20px;
-            text-align: center;
-            color: #64748b;
-            margin: 10px 0;
         }
         
         /* Форма */
@@ -232,55 +206,43 @@
             border: none;
             border-radius: 6px;
             cursor: pointer;
-            transition: 0.3s;
             font-size: 18px;
             width: auto;
             margin-top: 15px;
         }
         
-        input[type="submit"]:hover {
-            background: #1e3a8a;
-        }
-        
+        /* Футер - 100% ширины */
         footer {
             background: #1e40af;
             color: white;
             text-align: center;
             padding: 20px 15px;
             margin-top: auto;
+            width: 100%;
         }
         
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .footer-contacts {
-            margin-top: 10px;
-            font-size: 14px;
-            opacity: 0.9;
-        }
-        
-        /* Мобильные устройства: сначала таблица, потом ссылки */
+        /* Mobile First: Изменение порядка с помощью Flex Box order */
         .mobile-order {
             display: flex;
             flex-direction: column;
         }
         
-        .table-section {
-            order: 1;
+        /* В HTML потоке ссылки идут перед таблицей, но на мобильных меняем порядок */
+        .links-section {
+            order: 2; /* Ссылки будут вторыми */
         }
         
-        .links-section {
-            order: 2;
+        .table-section {
+            order: 1; /* Таблица будет первой */
         }
         
         .form-section {
-            order: 3;
+            order: 3; /* Форма остается третьей */
         }
         
-        /* Медиа-запросы для планшетов и десктопов */
+        /* Медиа-запросы для планшетов и десктопов (Mobile First) */
         @media (min-width: 768px) {
+            /* Планшетная версия */
             header {
                 padding: 20px;
             }
@@ -293,18 +255,20 @@
                 font-size: 22px;
             }
             
+            /* Навигация - горизонтальное меню */
             nav ul {
                 flex-direction: row;
                 justify-content: center;
-                gap: 25px;
             }
             
             nav li {
                 border-bottom: none;
+                width: auto;
             }
             
             nav a {
-                padding: 10px 15px;
+                padding: 15px 20px;
+                width: auto;
             }
             
             .container {
@@ -317,12 +281,10 @@
             section {
                 padding: 20px;
                 margin-bottom: 30px;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             }
             
             h2 {
                 border-left: 6px solid #2563eb;
-                margin-top: 40px;
             }
             
             th, td {
@@ -333,29 +295,15 @@
                 max-width: 400px;
             }
             
-            /* Десктоп: сначала ссылки, потом таблица */
+            /* Возвращаем исходный порядок элементов для планшетов и десктопов */
             .mobile-order {
-                display: grid;
-                grid-template-areas: 
-                    "links links"
-                    "table form";
-                grid-template-columns: 1fr 1fr;
-                gap: 30px;
+                display: block;
             }
             
-            .links-section {
-                grid-area: links;
-                order: 0;
-            }
-            
-            .table-section {
-                grid-area: table;
-                order: 0;
-            }
-            
+            .links-section,
+            .table-section,
             .form-section {
-                grid-area: form;
-                order: 0;
+                order: 0; /* Сбрасываем order */
             }
             
             .links-list {
@@ -374,26 +322,46 @@
         }
         
         @media (min-width: 1024px) {
+            /* Десктопная версия */
             .links-list {
                 grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             }
             
-            .mobile-order {
-                grid-template-areas: 
-                    "links links links"
-                    "table table form";
-                grid-template-columns: 1fr 1fr 1fr;
+            /* Добавляем тени для лучшего визуального разделения */
+            section {
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            }
+            
+            nav a:hover {
+                background: rgba(255, 255, 255, 0.1);
+            }
+            
+            .links-list a:hover {
+                color: #1e3a8a;
+                text-decoration: underline;
+            }
+            
+            .links-list img:hover {
+                transform: scale(1.02);
+                box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+                border-color: #2563eb;
+            }
+            
+            input[type="submit"]:hover {
+                background: #1e3a8a;
             }
         }
     </style>
 </head>
 
 <body>
+<!-- Шапка - 100% ширины -->
 <header>
     <div class="logo">Лого</div>
     <div class="site-name">Автомобильный каталог</div>
 </header>
 
+<!-- Навигация - вертикальный список на мобильных -->
 <nav>
     <ul>
         <li><a href="#main">Главная</a></li>
@@ -403,8 +371,51 @@
     </ul>
 </nav>
 
+<!-- Контент - 100% ширины -->
 <div class="container">
     <main class="mobile-order">
+        <!-- В HTML потоке ссылки идут ПЕРЕД таблицей -->
+        <section id="links" class="links-section">
+            <h2>Полезные ссылки</h2>
+            <ul class="links-list">
+                <li><a href="http://www.kubsu.ru/" target="_blank">Абсолютная гиперссылка на КубГУ</a></li>
+                <li><a href="https://www.kubsu.ru/" target="_blank">Абсолютная гиперссылка на КубГУ</a></li>
+                <li>
+                    <a href="https://www.kubsu.ru" target="_blank">
+                        <img src="bmw.jpg" alt="BMW автомобиль" width="300" height="200" 
+                             onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200/1e40af/ffffff?text=BMW+X5';">
+                    </a>
+                </li>
+                <li><a href="#forma">Сокращенная ссылка на форму</a></li>
+                <li><a href="#top">Ссылка на главную страницу</a></li>
+                <li><a href="#table">Ссылка на таблицу</a></li>
+                <li><a href="https://www.kubsu.ru/ru/user/password" target="_blank">Ссылка с параметрами</a></li>
+                <li><a href="https://kubsu.ru/node/44?id=185" target="_blank">Ссылка с id</a></li>
+                <li><a href="https://www.kubsu.ru/ru/studlife" target="_blank">Страница в каталоге</a></li>
+                <li><a href="https://kubsu.ru/ru/education" target="_blank">Страница в каталоге</a></li>
+                <li class="image-map-container">
+                    <img src="mers.jpg" width="600" usemap="#image-map" alt="Mercedes автомобиль"
+                         onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400/1e3a8a/ffffff?text=Mercedes-Benz';">
+                    <map name="image-map">
+                        <area target="_blank" href="https://www.kubsu.ru/ru/sveden" coords="29,36,305,320" shape="rect">
+                        <area target="_blank" href="https://www.kubsu.ru/ru/node/21" coords="453,176,126" shape="circle">
+                    </map>
+                </li>
+                <li><a href="">Ссылка с пустым href</a></li>
+                <li><a>Ссылка без href</a></li>
+                <li><a href="https://site.com" rel="nofollow" target="_blank">nofollow ссылка</a></li>
+                <li>
+                    <ol>
+                        <li><a href="https://www.kubsu.ru/ru" target="_blank">КубГУ</a></li>
+                        <li><a href="https://www.kubsu.ru/ru/abitur" target="_blank">Абитуриентам</a></li>
+                        <li><a href="https://www.kubsu.ru/ru/education" target="_blank">Образование</a></li>
+                    </ol>
+                </li>
+                <li><a href="ftp://ftp.kubsu.ru/documents/price_list.pdf" target="_blank">FTP ссылка</a></li>
+            </ul>
+        </section>
+
+        <!-- Таблица идет ПОСЛЕ ссылок в HTML потоке -->
         <section id="table" class="table-section">
             <h2>Сравнение автомобилей</h2>
             <div class="table-container">
@@ -427,48 +438,6 @@
                     </tbody>
                 </table>
             </div>
-        </section>
-
-        <section id="links" class="links-section">
-            <h2>Полезные ссылки</h2>
-            <ul class="links-list">
-                <li><a href="http://www.kubsu.ru/" target="_blank">Абсолютная гиперссылка на КубГУ</a></li>
-                <li><a href="https://www.kubsu.ru/" target="_blank">Абсолютная гиперссылка на КубГУ</a></li>
-                <li>
-                    <a href="https://www.kubsu.ru" target="_blank">
-                        <!-- Первое изображение - BMW -->
-                        <img src="bmw.jpg" alt="BMW автомобиль" width="300" height="200" 
-                             onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200/1e40af/ffffff?text=BMW+X5';">
-                    </a>
-                </li>
-                <li><a href="#forma">Сокращенная ссылка на форму</a></li>
-                <li><a href="#top">Ссылка на главную страницу</a></li>
-                <li><a href="#table">Ссылка на таблицу</a></li>
-                <li><a href="https://www.kubsu.ru/ru/user/password" target="_blank">Ссылка с параметрами</a></li>
-                <li><a href="https://kubsu.ru/node/44?id=185" target="_blank">Ссылка с id</a></li>
-                <li><a href="https://www.kubsu.ru/ru/studlife" target="_blank">Страница в каталоге</a></li>
-                <li><a href="https://kubsu.ru/ru/education" target="_blank">Страница в каталоге</a></li>
-                <li class="image-map-container">
-                    <!-- Второе изображение - Mercedes -->
-                    <img src="mers.jpg" width="600" usemap="#image-map" alt="Mercedes автомобиль"
-                         onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400/1e3a8a/ffffff?text=Mercedes-Benz';">
-                    <map name="image-map">
-                        <area target="_blank" href="https://www.kubsu.ru/ru/sveden" coords="29,36,305,320" shape="rect">
-                        <area target="_blank" href="https://www.kubsu.ru/ru/node/21" coords="453,176,126" shape="circle">
-                    </map>
-                </li>
-                <li><a href="">Ссылка с пустым href</a></li>
-                <li><a>Ссылка без href</a></li>
-                <li><a href="https://site.com" rel="nofollow" target="_blank">nofollow ссылка</a></li>
-                <li>
-                    <ol>
-                        <li><a href="https://www.kubsu.ru/ru" target="_blank">КубГУ</a></li>
-                        <li><a href="https://www.kubsu.ru/ru/abitur" target="_blank">Абитуриентам</a></li>
-                        <li><a href="https://www.kubsu.ru/ru/education" target="_blank">Образование</a></li>
-                    </ol>
-                </li>
-                <li><a href="ftp://ftp.kubsu.ru/documents/price_list.pdf" target="_blank">FTP ссылка</a></li>
-            </ul>
         </section>
 
         <section id="form" class="form-section">
@@ -525,6 +494,7 @@
     </main>
 </div>
 
+<!-- Футер - 100% ширины -->
 <footer>
     <div class="footer-content">
         <p>© 2025 Автомобильный каталог. Все права защищены.</p>
@@ -535,12 +505,10 @@
 </footer>
 
 <script>
-    // Функция для обработки ошибок загрузки изображений
     document.addEventListener('DOMContentLoaded', function() {
         const images = document.querySelectorAll('img');
         images.forEach(img => {
             img.addEventListener('error', function() {
-                // Если изображение не загрузилось, заменяем его на placeholder
                 if (this.src.includes('bmw.jpg')) {
                     this.src = 'https://via.placeholder.com/300x200/1e40af/ffffff?text=BMW+X5';
                 } else if (this.src.includes('mers.jpg')) {
