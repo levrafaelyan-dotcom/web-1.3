@@ -267,6 +267,7 @@
             flex-direction: column;
         }
         
+        /* Мобильные устройства: сначала таблица, потом ссылки */
         .table-section {
             order: 1;
         }
@@ -333,13 +334,21 @@
                 max-width: 400px;
             }
             
-            /* Возвращаем исходный порядок элементов */
+            /* Десктоп: сначала ссылки, потом таблица */
             .mobile-order {
                 display: block;
             }
             
-            .table-section, .links-section, .form-section {
-                order: 0;
+            .links-section {
+                order: 1;
+            }
+            
+            .table-section {
+                order: 2;
+            }
+            
+            .form-section {
+                order: 3;
             }
             
             .links-list {
