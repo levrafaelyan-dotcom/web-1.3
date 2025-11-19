@@ -154,6 +154,8 @@
             display: block;
             margin: 10px 0;
             border: 2px solid #e2e8f0;
+            background: #f8fafc;
+            min-height: 150px;
         }
         
         .links-list img:hover {
@@ -168,6 +170,19 @@
         
         .image-map-container img {
             max-width: none;
+            background: #f8fafc;
+            min-height: 200px;
+        }
+        
+        /* Стили для отсутствующих изображений */
+        .image-placeholder {
+            background: #f8fafc;
+            border: 2px dashed #cbd5e1;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            color: #64748b;
+            margin: 10px 0;
         }
         
         /* Форма */
@@ -398,7 +413,9 @@
                 <li><a href="https://www.kubsu.ru/" target="_blank">Абсолютная гиперссылка на КубГУ</a></li>
                 <li>
                     <a href="https://www.kubsu.ru" target="_blank">
-                        <img src="bmw.jpg" alt="BMW автомобиль" width="300" height="200">
+                        <!-- Первое изображение - BMW -->
+                        <img src="bmw.jpg" alt="BMW автомобиль" width="300" height="200" 
+                             onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200/1e40af/ffffff?text=BMW+X5';">
                     </a>
                 </li>
                 <li><a href="#forma">Сокращенная ссылка на форму</a></li>
@@ -409,7 +426,9 @@
                 <li><a href="https://www.kubsu.ru/ru/studlife" target="_blank">Страница в каталоге</a></li>
                 <li><a href="https://kubsu.ru/ru/education" target="_blank">Страница в каталоге</a></li>
                 <li class="image-map-container">
-                    <img src="mers.jpg" width="600" usemap="#image-map" alt="Mercedes автомобиль">
+                    <!-- Второе изображение - Mercedes -->
+                    <img src="mers.jpg" width="600" usemap="#image-map" alt="Mercedes автомобиль"
+                         onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400/1e3a8a/ffffff?text=Mercedes-Benz';">
                     <map name="image-map">
                         <area target="_blank" href="https://www.kubsu.ru/ru/sveden" coords="29,36,305,320" shape="rect">
                         <area target="_blank" href="https://www.kubsu.ru/ru/node/21" coords="453,176,126" shape="circle">
@@ -491,5 +510,22 @@
         </div>
     </div>
 </footer>
+
+<script>
+    // Функция для обработки ошибок загрузки изображений
+    document.addEventListener('DOMContentLoaded', function() {
+        const images = document.querySelectorAll('img');
+        images.forEach(img => {
+            img.addEventListener('error', function() {
+                // Если изображение не загрузилось, заменяем его на placeholder
+                if (this.src.includes('bmw.jpg')) {
+                    this.src = 'https://via.placeholder.com/300x200/1e40af/ffffff?text=BMW+X5';
+                } else if (this.src.includes('mers.jpg')) {
+                    this.src = 'https://via.placeholder.com/600x400/1e3a8a/ffffff?text=Mercedes-Benz';
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>
