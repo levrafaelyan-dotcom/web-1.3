@@ -261,13 +261,12 @@
             opacity: 0.9;
         }
         
-        /* Изменение порядка элементов для мобильных */
+        /* Мобильные устройства: сначала таблица, потом ссылки */
         .mobile-order {
             display: flex;
             flex-direction: column;
         }
         
-        /* Мобильные устройства: сначала таблица, потом ссылки */
         .table-section {
             order: 1;
         }
@@ -336,19 +335,27 @@
             
             /* Десктоп: сначала ссылки, потом таблица */
             .mobile-order {
-                display: block;
+                display: grid;
+                grid-template-areas: 
+                    "links links"
+                    "table form";
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
             }
             
             .links-section {
-                order: 1;
+                grid-area: links;
+                order: 0;
             }
             
             .table-section {
-                order: 2;
+                grid-area: table;
+                order: 0;
             }
             
             .form-section {
-                order: 3;
+                grid-area: form;
+                order: 0;
             }
             
             .links-list {
@@ -369,6 +376,13 @@
         @media (min-width: 1024px) {
             .links-list {
                 grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            }
+            
+            .mobile-order {
+                grid-template-areas: 
+                    "links links links"
+                    "table table form";
+                grid-template-columns: 1fr 1fr 1fr;
             }
         }
     </style>
